@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useRouteMatch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // Styles
 import { GlobalStyle } from "./GlobalStyle";
 //components
@@ -13,21 +8,14 @@ import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
 
 const App = () => {
-  let match = useRouteMatch();
   return (
     <Router>
       <Header />
-      <Switch>
-        <Route path="/">
-          <Home />
-        </Route>
-        <Route path={`${match.path}/:movieId`}>
-          <Movie />
-        </Route>
-        <Route path="/*">
-          <NotFound />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:movieId" element={<Movie />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
 
       <GlobalStyle />
     </Router>
